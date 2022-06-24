@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  selector:
+    matchLabels:
+      app: app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: kcapp:1.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081
+          resources:
+            limits:
+              cpu: "750m"
+              memory: "1024Mi"
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+          env:
+            - name: OTEL_EXPORTER_ZIPKIN_ENDPOINT  
+              value: http://zipkin:9411/api/v2/spans
+            - name: KC_URL  
+              value: http://kc:9090/             

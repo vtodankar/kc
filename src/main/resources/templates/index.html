@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: headerFragment">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron text-center">
+			<h1>Customer Portal</h1>
+		</div>
+		<div>
+			<p>Start page which does not require any auth</p>
+
+			<h2>Existing Customers</h2>
+			<div class="well">
+				<b>Authenticated page: </b><a th:href="@{/customers}">customers</a>
+			</div>
+
+			<h2>Logged in user info</h2>
+			<div class="well">
+				<b>User info: </b><a th:href="@{/users}">user info</a>
+			</div>
+		</div>
+		<div id="pagefoot" th:include="layout :: footerFragment">Footer
+		</div>
+	</div>
+	<!-- container -->
+
+</body>
+</html>
