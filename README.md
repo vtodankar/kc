@@ -6,10 +6,17 @@ KC details are in the application.properties
 
 # Steps
 
-Start kc from bin
-```bash
-kc start-dev
-```
+To setup local Keycloak instance
+	
+	Build keylcoak container from keycloak directory
+	```
+	docker build -t lotj:keycloak .
+	```
+	
+	Run the container with the below command.  The container runs with and setups a DEMO client with user "keycloak" and password "test"
+	```
+	docker run -p 8080:8080 -t lotj:keycloak
+	```
 
 Create the admin user from http://localhost:8080/ for the master realm.
 Add the demo realm by importing from the demo-realm.json which is from 

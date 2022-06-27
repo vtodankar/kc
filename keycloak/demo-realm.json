@@ -4,6 +4,7 @@
     "users": [
         {
             "username": "keycloak",
+            "email": "test.keycloak@demo.com",
             "enabled": true,
             "credentials": [
                 {
