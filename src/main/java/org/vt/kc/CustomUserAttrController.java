@@ -2,6 +2,7 @@ package org.vt.kc;
 
 import java.security.Principal;
 import java.util.Map;
+import java.util.Optional;
 
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.KeycloakSecurityContext;
@@ -30,10 +31,10 @@ public class CustomUserAttrController {
 
         if (principal instanceof KeycloakPrincipal) {
 
-            KeycloakPrincipal<KeycloakSecurityContext> kPrincipal = (KeycloakPrincipal<KeycloakSecurityContext>) principal;
-            IDToken token = kPrincipal.getKeycloakSecurityContext()
-                .getIdToken();
-
+           Optional<KeycloakPrincipal<KeycloakSecurityContext>> KeyCloakPrincipal = Optional.of((KeycloakPrincipal<KeycloakSecurityContext>) principal);
+           IDToken token = KeyCloakPrincipal
+        		   .map(KeycloakPrincipal::getKeycloakSecurityContext)
+        		   .map(KeycloakSecurityContext::getIdToken).orElseGet(IDToken::new);
             userIdByToken = token.getSubject();
             userEmail = token.getEmail();
             dob = token.getBirthdate();
